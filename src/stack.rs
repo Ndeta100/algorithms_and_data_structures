@@ -42,4 +42,25 @@ mod test {
         assert_eq!(Some(1u32), stack.pop());
         assert_eq!(None, stack.pop());
     }
+    #[test]
+    fn test_push() {
+        let mut stact = Stack::<i32>::with_capacity(3);
+        stact.push(23);
+        assert_eq!(true, stact.push(23));
+        assert_eq!(2, stact.size());
+    }
+    #[test]
+    fn test_push_maxsize() {
+        let mut stack = Stack::<u32>::with_capacity(1);
+        assert_eq!(true, stack.push(1u32));
+        assert_eq!(Some(&1u32), stack.peek());
+        assert_eq!(false, stack.push(2u32));
+    }
+    #[test]
+    fn test_size() {
+        let mut stack = Stack::<u32>::with_capacity(1);
+        assert_eq!(0, stack.size());
+        stack.push(1u32);
+        assert_eq!(1, stack.size());
+    }
 }
